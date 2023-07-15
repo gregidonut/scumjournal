@@ -1,0 +1,11 @@
+{
+  "name": "scumjournal",
+  "version": "0.1.1",
+  "description": "first blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gregory Osilaja",
+  "license": "MIT"
+}
