@@ -3,11 +3,19 @@ article {
     margin: 1rem;
     border: black 0.2rem solid;
 
-    min-height: 70vh;
+    min-height: 60vh;
 }
 
 section {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+article section h3 {
+    width: 100%
+}
+
+article section p {
+    text-align: justify;
 }
