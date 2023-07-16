@@ -1,12 +1,18 @@
-import {component$} from "@builder.io/qwik";
+import {component$, useStyles$} from "@builder.io/qwik";
 import type {DocumentHead, RequestHandler} from "@builder.io/qwik-city";
 import {Link} from "@builder.io/qwik-city";
+import Header from "~/components/Header/Header";
+import styles from "./styles.css?inline"
 
 export default component$(() => {
+    useStyles$(styles)
     return (
         <>
-            <h2>about</h2>
-            <p>check out my <Link href="https://github.com/gregidonut">github</Link></p>
+            <Header />
+            <main>
+                <h2>about</h2>
+                <p>check out my <Link href="https://github.com/gregidonut">github</Link></p>
+            </main>
         </>
     );
 });
