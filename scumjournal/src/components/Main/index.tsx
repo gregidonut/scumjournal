@@ -1,6 +1,7 @@
 import {component$, useStyles$} from "@builder.io/qwik";
 import type {DocumentHead} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
+import displayPicture from "./portrait-pixelate-3.png?inline"
 
 
 export default component$(() => {
@@ -8,11 +9,15 @@ export default component$(() => {
     return (
         <>
             <main>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad at commodi dicta distinctio, expedita
-                    fugit in laudantium quidem recusandae tempore. Adipisci cupiditate esse, fugiat mollitia provident
-                    quis reiciendis sunt voluptas.
-                </p>
+                <section>
+                    <img width="300" height="300" src={displayPicture} alt="Display Picture"/>
+                </section>
+                <article>
+                    <h2>starting a blog</h2>
+                    <p>
+                        trying to anchor myself into creating more
+                    </p>
+                </article>
             </main>
         </>
     );

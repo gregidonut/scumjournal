@@ -1,8 +1,22 @@
 main {
-    background: pink;
-    border: black 0.2rem solid;
     margin: 0 1rem;
     padding: 1rem;
 
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+article {
+    padding: 1rem;
+    margin: 1rem;
+    border: black 0.2rem solid;
     flex-grow: 1;
 }
