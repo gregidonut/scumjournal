@@ -10,6 +10,9 @@ export default component$(() => {
     return (
         <>
             <article>
+                <p class="date">
+                    <time dateTime="2023-07-16">July 16</time> <time dateTime="07:35">07:35</time>
+                </p>
                 <section>
                     <img width="300" height="300" src={portrait} alt="Display Picture"/>
                 </section>
