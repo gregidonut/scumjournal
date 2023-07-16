@@ -1,5 +1,4 @@
 import {component$, useStyles$} from "@builder.io/qwik";
-import type {DocumentHead} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import displayPicture from "./portrait-pixelate-3.png?inline"
 
@@ -22,13 +21,3 @@ export default component$(() => {
         </>
     );
 });
-
-export const head: DocumentHead = {
-    title: "ScumJournal",
-    meta: [
-        {
-            name: "description",
-            content: "achoring myself to create more",
-        },
-    ],
-};

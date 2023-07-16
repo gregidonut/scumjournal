@@ -1,8 +1,8 @@
 import {component$} from "@builder.io/qwik";
 import type {DocumentHead, RequestHandler} from "@builder.io/qwik-city";
-import Header from "~/components/Header";
-import Main from "~/components/Main";
-import Footer from "~/components/Footer";
+import Header from "~/components/Header/Header";
+import Main from "~/components/Main/Main";
+import Footer from "~/components/Footer/Footer";
 
 export const onGet: RequestHandler = async ({cacheControl}) => {
     // Control caching for this request for best performance and to reduce hosting costs:
