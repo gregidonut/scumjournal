@@ -8,14 +8,16 @@ export default component$(() => {
     return (
         <>
             <main>
-                <section>
-                    <img width="300" height="300" src={displayPicture} alt="Display Picture"/>
-                </section>
                 <article>
-                    <h2>starting a blog</h2>
-                    <p>
-                        trying to anchor myself into creating more
-                    </p>
+                    <section>
+                        <img width="300" height="300" src={displayPicture} alt="Display Picture"/>
+                    </section>
+                    <section>
+                        <h3>starting a blog</h3>
+                        <p>
+                            trying to anchor myself into creating more
+                        </p>
+                    </section>
                 </article>
             </main>
         </>
