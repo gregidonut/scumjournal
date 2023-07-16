@@ -1,8 +1,9 @@
-main {
-    background: pink;
-    border: black 0.2rem solid;
-    margin: 0 1rem;
-    padding: 1rem;
+footer {
+    height: 5vh;
+    font-size: 2rem;
+    padding-bottom: 0.7rem;
+}
 
-    flex-grow: 1;
+footer p span {
+    margin: 0 0.5rem;
 }
