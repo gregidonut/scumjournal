@@ -2,6 +2,8 @@ article {
     padding: 1rem;
     margin: 1rem;
     border: black 0.2rem solid;
+
+    min-height: 70vh;
 }
 
 section {
