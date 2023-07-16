@@ -1,3 +1,26 @@
-header nav ul li {
+header nav ul {
     list-style: none;
+}
+
+header nav ul li h1 {
+    font-family: "Cedarville Cursive", sans-serif;
+    font-weight: lighter;
+
+}
+
+header nav ul li h1 a {
+    text-decoration: none;
+    color: black;
+}
+
+header nav ul li h1 a:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: .5rem;
+    text-decoration-color: black;
+    text-decoration-style: solid;
+}
+
+header nav ul li h1 a:active {
+    text-decoration-thickness: .8rem;
+    text-decoration-color: pink;
 }

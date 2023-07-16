@@ -38,5 +38,9 @@ export const head: DocumentHead = {
             rel: "stylesheet",
             href: "https://fonts.googleapis.com/css?family=Montserrat",
         },
+        {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css?family=Cedarville+Cursive",
+        },
     ],
 };
