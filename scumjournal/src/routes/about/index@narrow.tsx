@@ -1,11 +1,11 @@
-import {component$, useStyles$} from "@builder.io/qwik";
+import {component$, useStyles$, useStylesScoped$} from "@builder.io/qwik";
 import type {DocumentHead, RequestHandler} from "@builder.io/qwik-city";
 import {Link} from "@builder.io/qwik-city";
 import Header from "~/components/Header/Header";
 import styles from "./styles.css?inline"
 
 export default component$(() => {
-    useStyles$(styles)
+    useStylesScoped$(styles)
     return (
         <>
             <Header />
