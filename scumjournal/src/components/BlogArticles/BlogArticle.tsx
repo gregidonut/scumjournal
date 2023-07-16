@@ -12,10 +12,10 @@ export default component$(() => {
                 <section>
                     <img width="300" height="300" src={portrait} alt="Display Picture"/>
                 </section>
-               <section>
-                   <h3>starting a blog</h3>
-                   <p>anchoring my self into creating more</p>
-               </section>
+                <section>
+                    <h3>starting a blog</h3>
+                    <p>anchoring my self into creating more</p>
+                </section>
             </article>
             <article>
                 <section>
