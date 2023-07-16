@@ -33,4 +33,10 @@ export const head: DocumentHead = {
             content: "achoring myself to create more",
         },
     ],
+    links: [
+        {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css?family=Montserrat",
+        },
+    ],
 };
