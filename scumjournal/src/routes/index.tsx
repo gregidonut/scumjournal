@@ -1,5 +1,8 @@
 import {component$} from "@builder.io/qwik";
 import type {DocumentHead, RequestHandler} from "@builder.io/qwik-city";
+import Header from "~/components/Header";
+import Main from "~/components/Main";
+import Footer from "~/components/Footer";
 
 export const onGet: RequestHandler = async ({cacheControl}) => {
     // Control caching for this request for best performance and to reduce hosting costs:
@@ -15,12 +18,9 @@ export const onGet: RequestHandler = async ({cacheControl}) => {
 export default component$(() => {
     return (
         <>
-            <h1>Hi 👋</h1>
-            <p>
-                Can't wait to see what you build with qwik!
-                <br/>
-                Happy coding.
-            </p>
+            <Header/>
+            <Main/>
+            <Footer/>
         </>
     );
 });
