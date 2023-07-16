@@ -1,9 +1,10 @@
 article {
     padding: 1rem;
     margin: 1rem;
-    border: black 0.2rem solid;
+    border: #c9c9c9 0.2rem solid;
+    border-radius: 0.2rem;
 
-    min-height: 60vh;
+    min-height: 70vh;
 
     display: flex;
     flex-direction: column;
