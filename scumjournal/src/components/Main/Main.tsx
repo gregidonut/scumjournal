@@ -1,6 +1,6 @@
 import {component$, useStyles$} from "@builder.io/qwik";
 import styles from "./styles.css?inline";
-import displayPicture from "./portrait-pixelate-3.png?inline"
+import displayPicture from "./portrait-pixelate-4.png?inline"
 
 
 export default component$(() => {
