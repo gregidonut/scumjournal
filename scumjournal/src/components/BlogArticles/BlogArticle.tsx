@@ -22,6 +22,13 @@ export default component$(() => {
                     <img width="300" height="300" src={favicon} alt="Display Picture"/>
                 </section>
             </article>
+            <article>
+                <section>
+                    <p>
+                        kapag ba dinoble yung puto tawag ba dun putocopy?
+                    </p>
+                </section>
+            </article>
         </>
     );
 });

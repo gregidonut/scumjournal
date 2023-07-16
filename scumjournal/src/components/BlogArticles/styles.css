@@ -3,3 +3,9 @@ article {
     margin: 1rem;
     border: black 0.2rem solid;
 }
+
+section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

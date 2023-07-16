@@ -5,11 +5,9 @@ main {
     flex-grow: 1;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+
+    /*overflow-y: hidden;*/
+
 }
 
-section {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
