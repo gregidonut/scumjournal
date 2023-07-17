@@ -1,4 +1,4 @@
-import {component$, useStyles$} from "@builder.io/qwik";
+import {component$, useSignal, useStyles$} from "@builder.io/qwik";
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import favicon from "../../../public/favicon.svg?inline"
@@ -8,7 +8,7 @@ import portrait from "./portrait-pixelate-4.png?inline"
 export default component$(() => {
     useStyles$(styles)
 
-    const articles = [
+    const articles = useSignal([
         {
             id: 1,
             date: {
@@ -57,13 +57,13 @@ export default component$(() => {
             title: "monster meat bat",
             content: null,
         },
-    ]
+    ])
 
-    articles.reverse();
+    articles.value.reverse();
 
     return (
         <>
-            {articles.map((article) => (
+            {articles.value.map((article) => (
                 <article key={article.id}>
                     {article.date ? (
                         <p class="date">
