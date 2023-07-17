@@ -33,7 +33,7 @@ export const head: DocumentHead = {
     meta: [
         {
             name: "description",
-            content: "standard blog about page",
+            content: "about",
         },
     ],
     links: [
