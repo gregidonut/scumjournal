@@ -10,6 +10,8 @@ article {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 }
 
 section {
@@ -26,7 +28,20 @@ article section p {
     text-align: justify;
 }
 
-article p.date {
+article div.date-container {
     width: 100%;
     text-align: right;
+    font-size: 1.2rem;
+
+    position: absolute;
+    top: -1.5rem;
+    padding: 0 .5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+article div.date-container p.date {
+    background: antiquewhite;
 }
