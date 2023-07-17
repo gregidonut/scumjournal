@@ -1,6 +1,5 @@
 main {
-    margin: 0 1rem;
-    padding: 1rem;
+    /*margin: 0 0.2rem;*/
 
     flex-grow: 1;
 
@@ -9,6 +8,7 @@ main {
 
     overflow-y: auto;
 
+    width: 100%;
 }
 
 ::-webkit-scrollbar {

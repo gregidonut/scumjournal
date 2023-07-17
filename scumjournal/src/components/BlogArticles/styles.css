@@ -4,7 +4,7 @@ article {
     border: #c9c9c9 0.2rem solid;
     border-radius: 0.2rem;
 
-    min-height: 70vh;
+    min-height: 80vh;
 
     display: flex;
     flex-direction: column;
