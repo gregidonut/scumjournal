@@ -14,7 +14,7 @@ export default component$(() => {
                 <p>check out my <Link href="https://github.com/gregidonut">github</Link></p>
                 <p>I've been in tech support for a couple of years.</p>
                 <p>but I develop for the web now.</p>
-                <p><strong>LET'S ATTACK!!</strong></p>
+                <p><strong>let's attack!!</strong></p>
                 <section>
                     <h3>
                         want something like this? email me:

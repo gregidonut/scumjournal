@@ -59,6 +59,7 @@ main p strong {
     animation-iteration-count: infinite;
 
     color: red;
+    text-transform: uppercase;
 }
 
 @keyframes shake {
