@@ -7,11 +7,14 @@ import portrait from "./portrait-pixelate-4.png?inline"
 
 export default component$(() => {
     useStyles$(styles)
-    return (
-        <>
+
+    let articles = [
+        (
             <article>
                 <p class="date">
-                    <time dateTime="2023-07-16">July 16</time> <time dateTime="07:35">07:35</time>
+                    <time dateTime="2023-07-16">July 16</time>
+                    {" "}
+                    <time dateTime="07:35">07:35</time>
                 </p>
                 <section>
                     <img width="300" height="300" src={portrait} alt="Display Picture"/>
@@ -21,11 +24,16 @@ export default component$(() => {
                     <p>anchoring my self into creating more</p>
                 </section>
             </article>
+        ),
+        (
+
             <article>
                 <section>
                     <img width="300" height="300" src={favicon} alt="logo"/>
                 </section>
             </article>
+        ),
+        (
             <article>
                 <section>
                     <p>
@@ -33,6 +41,8 @@ export default component$(() => {
                     </p>
                 </section>
             </article>
+        ),
+        (
             <article>
                 <section>
                     <img width="300" height="300" src={hambat} alt="monster meat bat"/>
@@ -41,6 +51,14 @@ export default component$(() => {
                     <h3>monster meat bat</h3>
                 </section>
             </article>
+        ),
+    ]
+
+    articles.reverse();
+
+    return (
+        <>
+            {articles.map((article) => article)}
         </>
     );
 });
