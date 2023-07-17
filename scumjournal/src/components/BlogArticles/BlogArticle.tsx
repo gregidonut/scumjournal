@@ -1,4 +1,4 @@
-import {component$, useStore, useStyles$} from "@builder.io/qwik";
+import {component$, useStore, useStylesScoped$} from "@builder.io/qwik";
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import favicon from "./favicon.svg?inline"
@@ -6,7 +6,7 @@ import hambat from "./monster_hambat(3)_copy(2)_final_old(2).gif"
 import portrait from "./portrait-pixelate-4.png?inline"
 
 export default component$(() => {
-    useStyles$(styles)
+    useStylesScoped$(styles)
 
     const articlesRaw = useStore([
         {
