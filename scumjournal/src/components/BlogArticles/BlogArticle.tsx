@@ -1,4 +1,4 @@
-import {component$, useSignal, useStyles$} from "@builder.io/qwik";
+import {component$, useStore, useStyles$} from "@builder.io/qwik";
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import favicon from "./favicon.svg?inline"
@@ -8,7 +8,7 @@ import portrait from "./portrait-pixelate-4.png?inline"
 export default component$(() => {
     useStyles$(styles)
 
-    const articles = useSignal([
+    const articlesRaw = useStore([
         {
             id: 1,
             date: {
@@ -23,7 +23,7 @@ export default component$(() => {
             ],
             title: "starting a blog",
             content: [
-                    "anchoring my self into creating more",
+                "anchoring my self into creating more",
             ],
         },
         {
@@ -59,11 +59,11 @@ export default component$(() => {
         },
     ])
 
-    articles.value.reverse();
+    const articlesReverse = useStore([...articlesRaw].reverse());
 
     return (
         <>
-            {articles.value.map((article) => (
+            {articlesReverse.map((article) => (
                 <article key={article.id}>
                     {article.date ? (
                         <div class="date-container">
