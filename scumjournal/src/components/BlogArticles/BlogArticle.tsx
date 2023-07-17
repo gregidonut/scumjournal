@@ -1,7 +1,7 @@
 import {component$, useSignal, useStyles$} from "@builder.io/qwik";
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
-import favicon from "../../../public/favicon.svg?inline"
+import favicon from "./favicon.svg?inline"
 import hambat from "./monster_hambat(3)_copy(2)_final_old(2).gif"
 import portrait from "./portrait-pixelate-4.png?inline"
 
@@ -66,11 +66,13 @@ export default component$(() => {
             {articles.value.map((article) => (
                 <article key={article.id}>
                     {article.date ? (
-                        <p class="date">
-                            <time dateTime={article.date.date}>July 16</time>
-                            {" "}
-                            <time dateTime={article.date.time}>07:35</time>
-                        </p>
+                        <div class="date-container">
+                            <p class="date">
+                                <time dateTime={article.date.date}>July 16</time>
+                                {" "}
+                                <time dateTime={article.date.time}>07:35</time>
+                            </p>
+                        </div>
                     ) : null}
                     {article.images ? (
                         <section>
