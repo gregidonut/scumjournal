@@ -8,57 +8,85 @@ import portrait from "./portrait-pixelate-4.png?inline"
 export default component$(() => {
     useStyles$(styles)
 
-    let articles = [
-        (
-            <article>
-                <p class="date">
-                    <time dateTime="2023-07-16">July 16</time>
-                    {" "}
-                    <time dateTime="07:35">07:35</time>
-                </p>
-                <section>
-                    <img width="300" height="300" src={portrait} alt="Display Picture"/>
-                </section>
-                <section>
-                    <h3>starting a blog</h3>
-                    <p>anchoring my self into creating more</p>
-                </section>
-            </article>
-        ),
-        (
-
-            <article>
-                <section>
-                    <img width="300" height="300" src={favicon} alt="logo"/>
-                </section>
-            </article>
-        ),
-        (
-            <article>
-                <section>
-                    <p>
-                        kapag ba dinoble yung puto tawag ba dun putocopy?
-                    </p>
-                </section>
-            </article>
-        ),
-        (
-            <article>
-                <section>
-                    <img width="300" height="300" src={hambat} alt="monster meat bat"/>
-                </section>
-                <section>
-                    <h3>monster meat bat</h3>
-                </section>
-            </article>
-        ),
+    const articles = [
+        {
+            id: 1,
+            date: {
+                date: "2023-07-16",
+                time: "07:35",
+            },
+            images: [
+                {
+                    alt: "Display Picture",
+                    handle: portrait,
+                },
+            ],
+            title: "starting a blog",
+            content: [
+                    "anchoring my self into creating more",
+            ],
+        },
+        {
+            id: 2,
+            date: null,
+            images: [
+                {
+                    alt: "logo",
+                    handle: favicon,
+                },
+            ],
+            title: null,
+            content: null,
+        },
+        {
+            id: 3,
+            date: null,
+            content: [
+                "kapag ba dinoble yung puto tawag ba dun putocopy?",
+            ],
+        },
+        {
+            id: 4,
+            date: null,
+            images: [
+                {
+                    alt: "monster meat bat",
+                    handle: hambat,
+                },
+            ],
+            title: "monster meat bat",
+            content: null,
+        },
     ]
 
     articles.reverse();
 
     return (
         <>
-            {articles.map((article) => article)}
+            {articles.map((article) => (
+                <article key={article.id}>
+                    {article.date ? (
+                        <p class="date">
+                            <time dateTime={article.date.date}>July 16</time>
+                            {" "}
+                            <time dateTime={article.date.time}>07:35</time>
+                        </p>
+                    ) : null}
+                    {article.images ? (
+                        <section>
+                            <img width="300" height="300" src={article.images[0].handle} alt={article.images[0].alt}/>
+                        </section>
+                    ) : null}
+                    {article.title ? (
+                        <h3>{article.title}</h3>
+                    ) : null}
+                    {article.content ? (
+                        <section>
+                            <p>{article.content[0]}</p>
+                        </section>
+                    ) : null}
+                </article>
+            ))}
         </>
     );
 });
