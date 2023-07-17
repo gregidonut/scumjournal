@@ -8,10 +8,21 @@ export default component$(() => {
     useStylesScoped$(styles)
     return (
         <>
-            <Header />
+            <Header/>
             <main>
                 <h2>about</h2>
                 <p>check out my <Link href="https://github.com/gregidonut">github</Link></p>
+                <p>I've been in tech support for a couple of years.</p>
+                <p>but I develop for the web now.</p>
+                <p><strong>LET'S ATTACK!!</strong></p>
+                <section>
+                    <h3>
+                        want something like this? email me:
+                    </h3>
+                    <address>
+                        <a href="mailto:gregosilaja@outlook.com">gregosilaja@outlook.com</a>
+                    </address>
+                </section>
             </main>
         </>
     );
@@ -26,5 +37,9 @@ export const head: DocumentHead = {
         },
     ],
     links: [
+        {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css?family=Pangolin",
+        },
     ],
 };

@@ -1,10 +1,25 @@
 main {
+    font-family: "Pangolin", sans-serif;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 1rem;
     padding: 1rem;
+
+    background: #fff5e9;
+
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+main p {
+    text-align: justify;
+    padding: 0.5rem 0;
 }
 
 main p a {
@@ -16,4 +31,46 @@ main p a:active {
     background: pink;
     border: 1px;
     border-radius: 70%;
+}
+
+main section {
+    border: black .3rem solid;
+    background: #f1e1e4;
+    padding: 0.5rem;
+    text-align: justify;
+}
+
+main section h3 {
+    font-size: 2.5rem;
+    font-weight: lighter;
+}
+
+address {
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main p strong {
+    display: flex;
+    animation: shake 0.1s;
+    animation-iteration-count: infinite;
+
+    color: red;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
