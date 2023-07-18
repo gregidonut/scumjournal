@@ -17,7 +17,6 @@ export default component$(() => {
                 {
                     alt: "Display Picture",
                     handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704741/microBlogArticles/portrait-pixelate-4_hiqmtz.png",
-                    priority: true,
                 },
             ],
             title: "starting a blog",
@@ -32,7 +31,6 @@ export default component$(() => {
                 {
                     alt: "logo",
                     handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704739/microBlogArticles/favicon_csqst2.svg",
-                    priority: false,
                 },
             ],
             title: null,
@@ -54,7 +52,6 @@ export default component$(() => {
                 {
                     alt: "monster meat bat",
                     handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704757/microBlogArticles/monster_hambat_3__copy_2__final_old_2_jduo0e.gif",
-                    priority: false,
                 },
             ],
             title: "monster meat bat",
@@ -87,7 +84,6 @@ export default component$(() => {
                                         width={300}
                                         height={300}
                                         alt={image.alt}
-                                        priority={image.priority}
                                     />
                                 ))
                             }
