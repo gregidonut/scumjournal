@@ -37,5 +37,8 @@
     "vite": "4.4.0",
     "vite-tsconfig-paths": "4.2.0",
     "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@unpic/qwik": "^0.0.23"
   }
 }

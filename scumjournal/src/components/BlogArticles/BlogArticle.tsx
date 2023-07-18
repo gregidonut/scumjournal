@@ -1,9 +1,7 @@
 import {component$, useStore, useStylesScoped$} from "@builder.io/qwik";
+import {Image} from '@unpic/qwik';
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
-import favicon from "./favicon.svg?inline"
-import hambat from "./monster_hambat(3)_copy(2)_final_old(2).gif"
-import portrait from "./portrait-pixelate-4.png?inline"
 
 export default component$(() => {
     useStylesScoped$(styles)
@@ -18,7 +16,8 @@ export default component$(() => {
             images: [
                 {
                     alt: "Display Picture",
-                    handle: portrait,
+                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704741/microBlogArticles/portrait-pixelate-4_hiqmtz.png",
+                    priority: true,
                 },
             ],
             title: "starting a blog",
@@ -32,7 +31,8 @@ export default component$(() => {
             images: [
                 {
                     alt: "logo",
-                    handle: favicon,
+                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704739/microBlogArticles/favicon_csqst2.svg",
+                    priority: false,
                 },
             ],
             title: null,
@@ -41,6 +41,8 @@ export default component$(() => {
         {
             id: 3,
             date: null,
+            images: null,
+            title: null,
             content: [
                 "kapag ba dinoble yung puto tawag ba dun putocopy?",
             ],
@@ -51,7 +53,8 @@ export default component$(() => {
             images: [
                 {
                     alt: "monster meat bat",
-                    handle: hambat,
+                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704757/microBlogArticles/monster_hambat_3__copy_2__final_old_2_jduo0e.gif",
+                    priority: false,
                 },
             ],
             title: "monster meat bat",
@@ -76,7 +79,18 @@ export default component$(() => {
                     ) : null}
                     {article.images ? (
                         <section>
-                            <img width="300" height="300" src={article.images[0].handle} alt={article.images[0].alt}/>
+                            {
+                                article.images.map((image) => (
+                                    <Image
+                                        src={image.handle}
+                                        layout="constrained"
+                                        width={300}
+                                        height={300}
+                                        alt={image.alt}
+                                        priority={image.priority}
+                                    />
+                                ))
+                            }
                         </section>
                     ) : null}
                     {article.title ? (
@@ -84,7 +98,11 @@ export default component$(() => {
                     ) : null}
                     {article.content ? (
                         <section>
-                            <p>{article.content[0]}</p>
+                            {
+                                article.content.map((paragraph) => (
+                                    <p>{paragraph}</p>
+                                ))
+                            }
                         </section>
                     ) : null}
                 </article>
