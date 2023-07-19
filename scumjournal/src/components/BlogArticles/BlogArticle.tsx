@@ -51,7 +51,7 @@ export default component$(() => {
             images: [
                 {
                     alt: "monster meat bat",
-                    handle: "https://scumjournal.b-cdn.net/microblogarticles/monster_hambat(3)_copy(2)_final_old(2).gif",
+                    handle: "https://scumjournal.b-cdn.net/microblogarticles/monster-meat-bat-200fps-300px.webp",
                 },
             ],
             title: "monster meat bat",
