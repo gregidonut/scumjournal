@@ -16,7 +16,7 @@ export default component$(() => {
             images: [
                 {
                     alt: "Display Picture",
-                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704741/microBlogArticles/portrait-pixelate-4_hiqmtz.png",
+                    handle: "https://scumjournal.b-cdn.net/microblogarticles/portrait-pixelate-4.png",
                 },
             ],
             title: "starting a blog",
@@ -30,7 +30,7 @@ export default component$(() => {
             images: [
                 {
                     alt: "logo",
-                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704739/microBlogArticles/favicon_csqst2.svg",
+                    handle: "https://scumjournal.b-cdn.net/microblogarticles/favicon.svg",
                 },
             ],
             title: null,
@@ -51,7 +51,7 @@ export default component$(() => {
             images: [
                 {
                     alt: "monster meat bat",
-                    handle: "https://res.cloudinary.com/dyvlgmh1w/image/upload/v1689704757/microBlogArticles/monster_hambat_3__copy_2__final_old_2_jduo0e.gif",
+                    handle: "https://scumjournal.b-cdn.net/microblogarticles/monster_hambat(3)_copy(2)_final_old(2).gif",
                 },
             ],
             title: "monster meat bat",
