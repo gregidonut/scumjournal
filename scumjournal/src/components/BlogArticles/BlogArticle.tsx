@@ -57,6 +57,17 @@ export default component$(() => {
             title: "monster meat bat",
             content: null,
         },
+        {
+
+            id: 5,
+            date: null,
+            images: null,
+            title: null,
+            content: [
+                "you ever think maybe life just happens. and we're all just watching everything unfold?",
+                "a back seat through your own eyes.",
+            ],
+        }
     ])
 
     const articlesReverse = useStore([...articlesRaw].reverse());
