@@ -80,7 +80,7 @@ export default component$(() => {
                                 article.images.map((image) => (
                                     <Image
                                         src={image.handle}
-                                        layout="constrained"
+                                        layout="fixed"
                                         width={300}
                                         height={300}
                                         alt={image.alt}
