@@ -82,12 +82,14 @@ export default component$(() => {
         const dateFromString = new Date(`${date}T${time}:00.000+08:00`);
         return `${months[dateFromString.getMonth()]} ${dateFromString.getDate()}, ${dateFromString.getFullYear()}`
     }
+
     function timeToString(date: string, time: string) {
         const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
         return `${(timeFromString.getHours() >= 12 ? timeFromString.getHours() - 12 :
             timeFromString.getHours())}:${(timeFromString.getMinutes() < 10 ? `0${timeFromString.getMinutes()}` :
             timeFromString.getMinutes())} ${(timeFromString.getHours() >= 12) ? "PM" : "AM"}`
     }
+
     function timeElements(date: string, time: string) {
         return (
             <>
