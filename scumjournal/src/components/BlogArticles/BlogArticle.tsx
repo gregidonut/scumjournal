@@ -2,6 +2,7 @@ import {component$, useStore, useStylesScoped$} from "@builder.io/qwik";
 import {Image} from '@unpic/qwik';
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
+import * as datefns from "date-fns";
 
 export default component$(() => {
     useStylesScoped$(styles)
@@ -75,30 +76,17 @@ export default component$(() => {
 
     const articlesReverse = useStore([...articlesRaw].reverse());
 
-    function dateToString(date: string, time: string) {
-        const months = [
-            "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ]
-        const dateFromString = new Date(`${date}T${time}:00.000+08:00`);
-        return `${months[dateFromString.getMonth()]} ${dateFromString.getDate()}, ${dateFromString.getFullYear()}`
-    }
-
-    function timeToString(date: string, time: string) {
-        const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
-        return `${(timeFromString.getHours() >= 12 ? timeFromString.getHours() - 12 :
-            timeFromString.getHours())}:${(timeFromString.getMinutes() < 10 ? `0${timeFromString.getMinutes()}` :
-            timeFromString.getMinutes())} ${(timeFromString.getHours() >= 12) ? "PM" : "AM"}`
-    }
 
     function timeElements(date: string, time: string) {
+        const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
+
+        const formattedDateString = datefns.format(timeFromString, "MMM do, yyyy | K:mm aaa XX")
+
+        const dateAttrVal = datefns.format(timeFromString, "yyyy-LL-dd")
+        const timeAttrVal = datefns.format(timeFromString, "HH:mm:ss.SSSXX")
+
         return (
-            <>
-                <time dateTime={date}>
-                    {dateToString(date, time)}</time>
-                {" "}
-                <time dateTime={time}>
-                    {timeToString(date, time)}</time>
-            </>
+            <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>
         )
     }
 
