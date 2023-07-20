@@ -60,7 +60,10 @@ export default component$(() => {
         {
 
             id: 5,
-            date: null,
+            date: {
+                date: "2023-07-20",
+                time: "08:01",
+            },
             images: null,
             title: null,
             content: [
@@ -72,6 +75,31 @@ export default component$(() => {
 
     const articlesReverse = useStore([...articlesRaw].reverse());
 
+    function dateToString(date: string, time: string) {
+        const months = [
+            "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ]
+        const dateFromString = new Date(`${date}T${time}:00.000+08:00`);
+        return `${months[dateFromString.getMonth()]} ${dateFromString.getDate()}, ${dateFromString.getFullYear()}`
+    }
+    function timeToString(date: string, time: string) {
+        const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
+        return `${(timeFromString.getHours() >= 12 ? timeFromString.getHours() - 12 :
+            timeFromString.getHours())}:${(timeFromString.getMinutes() < 10 ? `0${timeFromString.getMinutes()}` :
+            timeFromString.getMinutes())} ${(timeFromString.getHours() >= 12) ? "PM" : "AM"}`
+    }
+    function timeElements(date: string, time: string) {
+        return (
+            <>
+                <time dateTime={date}>
+                    {dateToString(date, time)}</time>
+                {" "}
+                <time dateTime={time}>
+                    {timeToString(date, time)}</time>
+            </>
+        )
+    }
+
     return (
         <>
             {articlesReverse.map((article) => (
@@ -79,9 +107,7 @@ export default component$(() => {
                     {article.date ? (
                         <div class="date-container">
                             <p class="date">
-                                <time dateTime={article.date.date}>July 16</time>
-                                {" "}
-                                <time dateTime={article.date.time}>07:35</time>
+                                {timeElements(article.date.date, article.date.time)}
                             </p>
                         </div>
                     ) : null}
@@ -90,6 +116,7 @@ export default component$(() => {
                             {
                                 article.images.map((image) => (
                                     <Image
+                                        key={image.alt}
                                         src={image.handle}
                                         layout="fixed"
                                         width={300}
