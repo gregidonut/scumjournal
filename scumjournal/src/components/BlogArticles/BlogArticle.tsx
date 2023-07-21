@@ -10,10 +10,7 @@ export default component$(() => {
     const articlesRaw = useStore([
         {
             id: 1,
-            date: {
-                date: "2023-07-16",
-                time: "07:35",
-            },
+            date: "2023-07-15T23:35:00Z",
             images: [
                 {
                     alt: "Display Picture",
@@ -81,10 +78,7 @@ export default component$(() => {
         {
 
             id: 5,
-            date: {
-                date: "2023-07-20",
-                time: "08:01",
-            },
+            date: "2023-07-20T00:01:00Z",
             images: null,
             title: null,
             content: [
@@ -102,13 +96,13 @@ export default component$(() => {
     const articlesReverse = useStore([...articlesRaw].reverse());
 
 
-    function timeElements(date: string, time: string) {
-        const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
+    function timeElement(dateString: string) {
+        const dateFromString = new Date(dateString);
 
-        const formattedDateString = datefns.format(timeFromString, "MMM do, yyyy | K:mm aaa XX")
+        const formattedDateString = datefns.format(dateFromString, "MMM do, yyyy | K:mm aaa XX")
 
-        const dateAttrVal = datefns.format(timeFromString, "yyyy-LL-dd")
-        const timeAttrVal = datefns.format(timeFromString, "HH:mm:ss.SSSXX")
+        const dateAttrVal = datefns.format(dateFromString, "yyyy-LL-dd")
+        const timeAttrVal = datefns.format(dateFromString, "HH:mm:ss.SSSXX")
 
         return (
             <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>
@@ -122,7 +116,7 @@ export default component$(() => {
                     {article.date ? (
                         <div class="date-container">
                             <p class="date">
-                                {timeElements(article.date.date, article.date.time)}
+                                {timeElement(article.date)}
                             </p>
                         </div>
                     ) : null}
