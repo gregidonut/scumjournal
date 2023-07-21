@@ -24,6 +24,11 @@ export default component$(() => {
             content: [
                 "anchoring my self into creating more",
             ],
+            votes: {
+                upvotes: 0,
+                downvotes: 0,
+                lastVoteDate: null,
+            }
         },
         {
             id: 2,
@@ -36,6 +41,11 @@ export default component$(() => {
             ],
             title: null,
             content: null,
+            votes: {
+                upvotes: 0,
+                downvotes: 0,
+                lastVoteDate: null,
+            }
         },
         {
             id: 3,
@@ -45,6 +55,11 @@ export default component$(() => {
             content: [
                 "kapag ba dinoble yung puto tawag ba dun putocopy?",
             ],
+            votes: {
+                upvotes: 0,
+                downvotes: 0,
+                lastVoteDate: null,
+            }
         },
         {
             id: 4,
@@ -57,6 +72,11 @@ export default component$(() => {
             ],
             title: "monster meat bat",
             content: null,
+            votes: {
+                upvotes: 0,
+                downvotes: 0,
+                lastVoteDate: null,
+            }
         },
         {
 
@@ -71,6 +91,11 @@ export default component$(() => {
                 "you ever think maybe life just happens. and we're all just watching everything unfold?",
                 "a back seat through your own eyes.",
             ],
+            votes: {
+                upvotes: 0,
+                downvotes: 0,
+                lastVoteDate: null,
+            }
         }
     ])
 
