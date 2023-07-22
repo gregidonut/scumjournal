@@ -14,6 +14,9 @@ const (
 	MONGO_URI_ENV_VAR = "MONGO_URI"
 )
 
+// ContactMongo has logic to call the mongodb api by using an env var that contains the instance uri
+// then passing that to options.Client's ApplyURI() function, after which sending a 200 response
+// of the received json from the database
 func ContactMongo() []bson.M {
 
 	client, err := mongo.Connect(
