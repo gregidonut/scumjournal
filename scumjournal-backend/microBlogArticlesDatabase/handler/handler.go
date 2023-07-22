@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/gregidonut/scumjournal/scumjournal-backend/microBlogArticlesDatabase/contact"
 )
 
 // Response is of type APIGatewayProxyResponse since we're leveraging the
@@ -14,12 +15,12 @@ import (
 type Response events.APIGatewayProxyResponse
 
 // Handler is our lambda handler invoked by the `lambda.Start` function call
-func Handler(ctx context.Context, mongoReponse string) (Response, error) {
+func Handler(ctx context.Context) (Response, error) {
+	mongoResponse := contact.ContactMongo()
+
 	var buf bytes.Buffer
 
-	body, err := json.Marshal(map[string]interface{}{
-		"message": mongoReponse,
-	})
+	body, err := json.Marshal(mongoResponse)
 	if err != nil {
 		return Response{StatusCode: 404}, err
 	}
