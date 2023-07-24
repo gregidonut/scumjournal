@@ -36,17 +36,6 @@ export default component$(() => {
         return getArticles(controller);
     });
 
-    function timeElement(dateString: string) {
-        const dateFromString = new Date(dateString);
-
-        const formattedDateString = datefns.format(dateFromString, "MMM do, yyyy | K:mm aaa XX");
-
-        const dateAttrVal = datefns.format(dateFromString, "yyyy-LL-dd");
-        const timeAttrVal = datefns.format(dateFromString, "HH:mm:ss.SSSXX");
-
-        return <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>;
-    }
-
     return (
         <Resource
             value={microBlogArticlesResource}
@@ -108,3 +97,15 @@ export async function getArticles(controller?: AbortController): Promise<microBl
 
     return Array.isArray(json) ? json : Promise.reject(json);
 }
+
+function timeElement(dateString: string) {
+    const dateFromString = new Date(dateString);
+
+    const formattedDateString = datefns.format(dateFromString, "MMM do, yyyy | K:mm aaa XX");
+
+    const dateAttrVal = datefns.format(dateFromString, "yyyy-LL-dd");
+    const timeAttrVal = datefns.format(dateFromString, "HH:mm:ss.SSSXX");
+
+    return <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>;
+}
+
