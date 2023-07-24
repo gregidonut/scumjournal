@@ -19,7 +19,7 @@ export const head: DocumentHead = {
     meta: [
         {
             name: "description",
-            content: "achoring myself to create more",
+            content: "anchoring myself to create more",
         },
     ],
     links: [
