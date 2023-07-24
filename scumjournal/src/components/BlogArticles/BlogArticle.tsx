@@ -29,21 +29,13 @@ export default component$(() => {
     const microBlogArticles: microBlogArticle[] = useStore([]); // intializing empty array
 
     const microBlogArticlesResource = useResource$<microBlogArticle[]>(({ track, cleanup }) => {
-        // We need a way to re-run fetching data whenever the `github.org` changes.
-        // Use `track` to trigger re-running of the this data fetching function.
         track(() => microBlogArticles);
 
-        // A good practice is to use `AbortController` to abort the fetching of data if
-        // new request comes in. We create a new `AbortController` and register a `cleanup`
-        // function which is called when this function re-runs.
         const controller = new AbortController();
         cleanup(() => controller.abort());
 
-        // Fetch the data and return the promises.
         return getArticles(controller);
     });
-
-    // const articlesReverse = useStore([...articlesRaw].reverse());
 
     function timeElement(dateString: string) {
         const dateFromString = new Date(dateString);
@@ -59,8 +51,8 @@ export default component$(() => {
     return (
         <Resource
             value={microBlogArticlesResource}
-            onPending={() => <div>Loading..</div>}
-            onRejected={(error) => <p>Error: {error.message}</p>}
+            onPending={() => <article><p>Loading..</p></article>}
+            onRejected={(error) => <article><p>Error: {error.message}</p></article>}
             onResolved={(mba: microBlogArticle[]) => (
                 <>
                     {mba.map((article) => (
