@@ -1,6 +1,5 @@
 import { component$, Resource, useResource$, useStore, useStylesScoped$ } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
-// import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import * as datefns from "date-fns";
 
@@ -16,12 +15,12 @@ interface img {
 }
 
 interface microBlogArticle {
-    id: string;
     date: string | null;
     title: string | null;
     images: img[] | null;
     content: string[] | null;
     votes: vote | null;
+    postNumber: number;
 }
 
 export default component$(() => {
@@ -51,12 +50,20 @@ export default component$(() => {
     return (
         <Resource
             value={microBlogArticlesResource}
-            onPending={() => <article><p>Loading..</p></article>}
-            onRejected={(error) => <article><p>Error: {error.message}</p></article>}
+            onPending={() => (
+                <article>
+                    <p>Loading..</p>
+                </article>
+            )}
+            onRejected={(error) => (
+                <article>
+                    <p>Error: {error.message}</p>
+                </article>
+            )}
             onResolved={(mba: microBlogArticle[]) => (
                 <>
                     {mba.map((article) => (
-                        <article key={article.id}>
+                        <article key={article.postNumber}>
                             {article.date ? (
                                 <div class="date-container">
                                     <p class="date">{timeElement(article.date)}</p>
