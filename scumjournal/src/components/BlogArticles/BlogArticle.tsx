@@ -1,136 +1,111 @@
-import {component$, useStore, useStylesScoped$} from "@builder.io/qwik";
-import {Image} from '@unpic/qwik';
+import { component$, Resource, useResource$, useStore, useStylesScoped$ } from "@builder.io/qwik";
+import { Image } from "@unpic/qwik";
 // import {Link} from "@builder.io/qwik-city";
 import styles from "./styles.css?inline";
 import * as datefns from "date-fns";
 
+interface vote {
+    upvotes: string | null;
+    downvotes: string | null;
+    lastVoteDate: Date | null;
+}
+
+interface img {
+    alt: string;
+    handle: string;
+}
+
+interface microBlogArticle {
+    id: string;
+    date: string | null;
+    title: string | null;
+    images: img[] | null;
+    content: string[] | null;
+    votes: vote | null;
+}
+
 export default component$(() => {
-    useStylesScoped$(styles)
+    useStylesScoped$(styles);
+    const microBlogArticles: microBlogArticle[] = useStore([]); // intializing empty array
 
-    const articlesRaw = useStore([
-        {
-            id: 1,
-            date: {
-                date: "2023-07-16",
-                time: "07:35",
-            },
-            images: [
-                {
-                    alt: "Display Picture",
-                    handle: "https://scumjournal.b-cdn.net/microblogarticles/portrait-pixelate-4.png",
-                },
-            ],
-            title: "starting a blog",
-            content: [
-                "anchoring my self into creating more",
-            ],
-        },
-        {
-            id: 2,
-            date: null,
-            images: [
-                {
-                    alt: "logo",
-                    handle: "https://scumjournal.b-cdn.net/microblogarticles/favicon.svg",
-                },
-            ],
-            title: null,
-            content: null,
-        },
-        {
-            id: 3,
-            date: null,
-            images: null,
-            title: null,
-            content: [
-                "kapag ba dinoble yung puto tawag ba dun putocopy?",
-            ],
-        },
-        {
-            id: 4,
-            date: null,
-            images: [
-                {
-                    alt: "monster meat bat",
-                    handle: "https://scumjournal.b-cdn.net/microblogarticles/monster-meat-bat-200fps-300px.webp",
-                },
-            ],
-            title: "monster meat bat",
-            content: null,
-        },
-        {
+    const microBlogArticlesResource = useResource$<microBlogArticle[]>(({ track, cleanup }) => {
+        // We need a way to re-run fetching data whenever the `github.org` changes.
+        // Use `track` to trigger re-running of the this data fetching function.
+        track(() => microBlogArticles);
 
-            id: 5,
-            date: {
-                date: "2023-07-20",
-                time: "08:01",
-            },
-            images: null,
-            title: null,
-            content: [
-                "you ever think maybe life just happens. and we're all just watching everything unfold?",
-                "a back seat through your own eyes.",
-            ],
-        }
-    ])
+        // A good practice is to use `AbortController` to abort the fetching of data if
+        // new request comes in. We create a new `AbortController` and register a `cleanup`
+        // function which is called when this function re-runs.
+        const controller = new AbortController();
+        cleanup(() => controller.abort());
 
-    const articlesReverse = useStore([...articlesRaw].reverse());
+        // Fetch the data and return the promises.
+        return getArticles(controller);
+    });
 
+    // const articlesReverse = useStore([...articlesRaw].reverse());
 
-    function timeElements(date: string, time: string) {
-        const timeFromString = new Date(`${date}T${time}:00.000+08:00`);
+    function timeElement(dateString: string) {
+        const dateFromString = new Date(dateString);
 
-        const formattedDateString = datefns.format(timeFromString, "MMM do, yyyy | K:mm aaa XX")
+        const formattedDateString = datefns.format(dateFromString, "MMM do, yyyy | K:mm aaa XX");
 
-        const dateAttrVal = datefns.format(timeFromString, "yyyy-LL-dd")
-        const timeAttrVal = datefns.format(timeFromString, "HH:mm:ss.SSSXX")
+        const dateAttrVal = datefns.format(dateFromString, "yyyy-LL-dd");
+        const timeAttrVal = datefns.format(dateFromString, "HH:mm:ss.SSSXX");
 
-        return (
-            <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>
-        )
+        return <time dateTime={`${dateAttrVal}T${timeAttrVal}`}>{formattedDateString}</time>;
     }
 
     return (
-        <>
-            {articlesReverse.map((article) => (
-                <article key={article.id}>
-                    {article.date ? (
-                        <div class="date-container">
-                            <p class="date">
-                                {timeElements(article.date.date, article.date.time)}
-                            </p>
-                        </div>
-                    ) : null}
-                    {article.images ? (
-                        <section>
-                            {
-                                article.images.map((image) => (
-                                    <Image
-                                        key={image.alt}
-                                        src={image.handle}
-                                        layout="fixed"
-                                        width={300}
-                                        height={300}
-                                        alt={image.alt}
-                                    />
-                                ))
-                            }
-                        </section>
-                    ) : null}
-                    {article.title ? (
-                        <h3>{article.title}</h3>
-                    ) : null}
-                    {article.content ? (
-                        <section>
-                            {
-                                article.content.map((paragraph) => (
-                                    <p>{paragraph}</p>
-                                ))
-                            }
-                        </section>
-                    ) : null}
-                </article>
-            ))}
-        </>
+        <Resource
+            value={microBlogArticlesResource}
+            onPending={() => <div>Loading..</div>}
+            onRejected={(error) => <p>Error: {error.message}</p>}
+            onResolved={(mba: microBlogArticle[]) => (
+                <>
+                    {mba.map((article) => (
+                        <article key={article.id}>
+                            {article.date ? (
+                                <div class="date-container">
+                                    <p class="date">{timeElement(article.date)}</p>
+                                </div>
+                            ) : null}
+                            {article.images ? (
+                                <section>
+                                    {article.images.map((image) => (
+                                        <Image
+                                            key={image.alt}
+                                            src={image.handle}
+                                            layout="fixed"
+                                            width={300}
+                                            height={300}
+                                            alt={image.alt}
+                                        />
+                                    ))}
+                                </section>
+                            ) : null}
+                            {article.title ? <h3>{article.title}</h3> : null}
+                            {article.content ? (
+                                <section>
+                                    {article.content.map((paragraph) => (
+                                        <p>{paragraph}</p>
+                                    ))}
+                                </section>
+                            ) : null}
+                        </article>
+                    ))}
+                </>
+            )}
+        />
     );
 });
+
+export async function getArticles(controller?: AbortController): Promise<microBlogArticle[]> {
+    const url = `https://yo25a0gvf3.execute-api.us-east-1.amazonaws.com/microBlogArticlesDatabase`;
+    const resp = await fetch(url, {
+        signal: controller?.signal,
+    });
+    const json = await resp.json();
+
+    return Array.isArray(json) ? json : Promise.reject(json);
+}
