@@ -8,9 +8,9 @@ import (
 )
 
 type microBlogPost struct {
-	ID      string `json:"_id"`
-	Content any    `json:"content"`
-	Date    any    `json:"date"`
+	ID      string   `json:"_id"`
+	Content []string `json:"content"`
+	Date    string   `json:"date"`
 	Images  []struct {
 		Alt    string `json:"alt"`
 		Handle string `json:"handle"`
@@ -18,9 +18,9 @@ type microBlogPost struct {
 	PostNumber int    `json:"postNumber"`
 	Title      string `json:"title"`
 	Votes      struct {
-		Downvotes    int `json:"downvotes"`
-		LastVoteDate any `json:"lastVoteDate"`
-		Upvotes      int `json:"upvotes"`
+		Downvotes    int    `json:"downvotes"`
+		LastVoteDate string `json:"lastVoteDate"`
+		Upvotes      int    `json:"upvotes"`
 	} `json:"votes"`
 }
 
