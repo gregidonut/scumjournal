@@ -8,7 +8,7 @@ export default component$(() => {
     useStylesScoped$(styles)
     return (
         <>
-            <main id="blog-page">
+            <main class="blog-page">
                 <MicroBlogArticle/>
             </main>
         </>
