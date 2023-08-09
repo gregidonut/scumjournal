@@ -50,7 +50,17 @@ def desktop_driver(default_options):
 
 @pytest.fixture(params=[
     "iPhone SE",
+    "iPhone XR",
+    "iPhone 12 Pro",
+    "Pixel 5",
+    "Samsung Galaxy S8+",
+    "Samsung Galaxy S20 Ultra",
+    "iPad Air",
     "iPad Mini",
+    "Surface Pro 7",
+    "Surface Duo",
+    "Galaxy Fold",
+    "Samsung Galaxy A51/71"
 ])
 def mobile_driver(request, default_options):
     device_name = request.param
