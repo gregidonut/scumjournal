@@ -9,13 +9,18 @@ URL = "http://localhost:5173/"
 
 
 @pytest.fixture
-def desktop_driver():
+def default_options():
     options = Options()
     options.add_argument("--headless")
 
+    return options
+
+
+@pytest.fixture
+def desktop_driver(default_options):
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
-        options=options,
+        options=default_options,
     )
     driver.implicitly_wait(IMPLICIT_WAIT_TIME)
     driver.get(URL)
@@ -29,11 +34,10 @@ def desktop_driver():
     "iPhone SE",
     "iPad Mini",
 ])
-def mobile_driver(request):
+def mobile_driver(request, default_options):
     device_name = request.param
 
-    options = Options()
-    options.add_argument("--headless")
+    options = default_options
     options.add_experimental_option(
         "mobileEmulation", {"deviceName": device_name}
     )
