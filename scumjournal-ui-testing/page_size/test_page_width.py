@@ -1,6 +1,6 @@
 import pytest
 from pytest_lazyfixture import lazy_fixture
-import pageutils.utils
+import pageutils.helpers
 
 
 @pytest.mark.parametrize(
@@ -13,12 +13,12 @@ import pageutils.utils
 @pytest.mark.parametrize(
     "against",
     [
-        pageutils.utils.get_header_width,
-        pageutils.utils.get_main_width,
-        pageutils.utils.get_window_width,
+        pageutils.helpers.get_header_width,
+        pageutils.helpers.get_main_width,
+        pageutils.helpers.get_window_width,
     ]
 )
 def test_body_width(driver, against):
-    body_width = pageutils.utils.get_body_width(driver)
+    body_width = pageutils.helpers.get_body_width(driver)
     against = against(driver)
     assert body_width == against
