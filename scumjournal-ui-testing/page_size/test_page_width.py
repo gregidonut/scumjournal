@@ -1,3 +1,4 @@
+import pytest
 from selenium import webdriver
 
 
@@ -28,43 +29,31 @@ def body_and_window_width(driver: webdriver.Chrome):
     return body_width, window_width
 
 
-def test_body_and_header_width_on_desktop(desktop_driver):
+@pytest.mark.parametrize(
+    "body_against_func",
+    [
+        body_and_header_width,
+        body_and_main_width,
+        body_and_window_width,
+    ]
+)
+def test_body_width_on_desktop(desktop_driver, body_against_func):
     driver = desktop_driver
 
-    body_width, header_width = body_and_header_width(driver)
-    assert body_width == header_width
+    body_width, against = body_against_func(driver)
+    assert body_width == against
 
 
-def test_body_and_main_width_on_desktop(desktop_driver):
-    driver = desktop_driver
-
-    body_width, main_width = body_and_main_width(driver)
-    assert body_width == main_width
-
-
-def test_body_and_window_width_on_desktop(desktop_driver):
-    driver = desktop_driver
-
-    body_width, window_width = body_and_window_width(driver)
-    assert body_width == window_width
-
-
-def test_body_height_on_mobile(mobile_driver):
+@pytest.mark.parametrize(
+    "body_against_func",
+    [
+        body_and_header_width,
+        body_and_main_width,
+        body_and_window_width,
+    ]
+)
+def test_body_width_on_mobile(mobile_driver, body_against_func):
     driver = mobile_driver
 
-    body_width, header_width = body_and_header_width(driver)
-    assert body_width == header_width
-
-
-def test_body_and_main_on_mobile(mobile_driver):
-    driver = mobile_driver
-
-    body_width, main_width = body_and_main_width(driver)
-    assert body_width == main_width
-
-
-def test_body_and_window_width_on_mobile(mobile_driver):
-    driver = mobile_driver
-
-    body_width, window_width = body_and_window_width(driver)
-    assert body_width == window_width
+    body_width, against = body_against_func(driver)
+    assert body_width == against
