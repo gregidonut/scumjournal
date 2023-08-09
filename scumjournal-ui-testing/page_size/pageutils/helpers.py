@@ -33,6 +33,21 @@ def get_window_width(driver: webdriver.Chrome):
     return window_width
 
 
+def window_width_is_not_less_than_article_width(driver: webdriver.Chrome) -> bool:
+    return driver.execute_script(
+        """
+        const element = document.querySelector('article');
+        const style = window.getComputedStyle(element);
+        const width = element.offsetWidth; // width including padding and border
+        const marginLeft = parseFloat(style.marginLeft);
+        const marginRight = parseFloat(style.marginRight);
+        const totalWidthIncludingMargin = width + marginLeft + marginRight;
+        
+        return !( window.innerWidth < totalWidthIncludingMargin )
+        """
+    )
+
+
 def get_body_and_window_height(scroll_to_bottom: bool, driver: webdriver.Chrome):
     if scroll_to_bottom:
         # scroll to bottom of page targeting main tag

@@ -37,6 +37,7 @@ def instantiate_driver(options: Options) -> webdriver.Chrome:
     )
     driver.implicitly_wait(IMPLICIT_WAIT_TIME)
     driver.get(URL)
+    driver.maximize_window()
 
     return driver
 
