@@ -3,11 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError, ChunkedEncodingError
 
 IMPLICIT_WAIT_TIME = 10
 URL = "http://localhost:5173/"
-MAX_RETRIES = 3
+MAX_RETRIES = 6
 
 
 @pytest.fixture
@@ -27,7 +27,12 @@ def instantiate_driver(options: Options) -> webdriver.Chrome:
             break
         except ConnectionError:
             if i + 1 == MAX_RETRIES:
-                print(f"retried 3 times")
+                print(f"retried {i + 1} times")
+                raise
+            print(f"retried {i + 1} times")
+        except ChunkedEncodingError:
+            if i + 1 == MAX_RETRIES:
+                print(f"retried {i + 1} times")
                 raise
             print(f"retried {i + 1} times")
 
