@@ -14,6 +14,7 @@ MAX_RETRIES = 3
 def default_options():
     options = Options()
     options.add_argument("--headless")
+    options.add_argument("--incognito")
 
     return options
 
