@@ -2,6 +2,7 @@ attrs==23.1.0
 certifi==2023.7.22
 charset-normalizer==3.2.0
 exceptiongroup==1.1.2
+execnet==2.0.2
 h11==0.14.0
 idna==3.4
 iniconfig==2.0.0
@@ -12,6 +13,7 @@ pluggy==1.2.0
 PySocks==1.7.1
 pytest==7.4.0
 pytest-lazy-fixture==0.6.3
+pytest-xdist==3.3.1
 python-dotenv==1.0.0
 requests==2.31.0
 selenium==4.11.2
@@ -22,4 +24,5 @@ trio==0.22.2
 trio-websocket==0.10.3
 urllib3==2.0.4
 webdriver-manager==4.0.0
+wheel==0.40.0
 wsproto==1.2.0
