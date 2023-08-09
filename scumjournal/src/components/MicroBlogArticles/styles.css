@@ -15,6 +15,19 @@ article {
     position: relative;
 }
 
+@media screen and (min-width: 376px) {
+    article {
+        width: 35.5rem;
+    }
+}
+
+@media screen and (min-width: 751px) {
+    article {
+        width: 50rem;
+    }
+}
+
+
 section {
     display: flex;
     align-items: center;
