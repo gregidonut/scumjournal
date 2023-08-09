@@ -16,15 +16,21 @@ def default_options():
     return options
 
 
-@pytest.fixture
-def desktop_driver(default_options):
+def instantiate_driver(options: Options) -> webdriver.Chrome:
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
-        options=default_options,
+        options=options,
     )
+
     driver.implicitly_wait(IMPLICIT_WAIT_TIME)
     driver.get(URL)
 
+    return driver
+
+
+@pytest.fixture
+def desktop_driver(default_options):
+    driver = instantiate_driver(default_options)
     yield driver
 
     driver.quit()
@@ -37,18 +43,12 @@ def desktop_driver(default_options):
 def mobile_driver(request, default_options):
     device_name = request.param
 
-    options = default_options
-    options.add_experimental_option(
+    mobile_options = default_options
+    mobile_options.add_experimental_option(
         "mobileEmulation", {"deviceName": device_name}
     )
 
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options,
-    )
-    driver.implicitly_wait(IMPLICIT_WAIT_TIME)
-    driver.get(URL)
-
+    driver = instantiate_driver(mobile_options)
     yield driver
 
     driver.quit()
