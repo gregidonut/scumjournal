@@ -1,3 +1,5 @@
+import pytest
+from pytest_lazyfixture import lazy_fixture
 from selenium import webdriver
 
 
@@ -20,19 +22,14 @@ def body_and_window_height(scroll_to_bottom: bool, driver: webdriver.Chrome):
     return body_height, window_height
 
 
-def test_body_height_on_desktop(desktop_driver):
-    driver = desktop_driver
-
-    for s in [False, True]:
-        body_height, window_height = body_and_window_height(
-            scroll_to_bottom=s, driver=driver
-        )
-        assert body_height == window_height
-
-
-def test_body_height_on_mobile(mobile_driver):
-    driver = mobile_driver
-
+@pytest.mark.parametrize(
+    "driver",
+    [
+        lazy_fixture("desktop_driver"),
+        lazy_fixture("mobile_driver"),
+    ]
+)
+def test_body_height(driver):
     for s in [False, True]:
         body_height, window_height = body_and_window_height(
             scroll_to_bottom=s, driver=driver

@@ -1,59 +1,56 @@
 import pytest
+from pytest_lazyfixture import lazy_fixture
 from selenium import webdriver
 
 
-def body_and_header_width(driver: webdriver.Chrome):
-    body_width = driver.execute_script("return document.body.offsetWidth")
+def get_body_width(driver: webdriver.Chrome):
+    body_width = driver.execute_script(
+        "return document.body.offsetWidth"
+    )
+
+    return body_width
+
+
+def get_header_width(driver: webdriver.Chrome):
     header_width = driver.execute_script(
         "return document.querySelector('header').offsetWidth"
     )
 
-    return body_width, header_width
+    return header_width
 
 
-def body_and_main_width(driver: webdriver.Chrome):
-    body_width = driver.execute_script("return document.body.offsetWidth")
+def get_main_width(driver: webdriver.Chrome):
     main_width = driver.execute_script(
         "return document.querySelector('main').offsetWidth"
     )
 
-    return body_width, main_width
+    return main_width
 
 
-def body_and_window_width(driver: webdriver.Chrome):
-    body_width = driver.execute_script("return document.body.offsetWidth")
+def get_window_width(driver: webdriver.Chrome):
     window_width = driver.execute_script(
         "return window.innerWidth"
     )
 
-    return body_width, window_width
+    return window_width
 
 
 @pytest.mark.parametrize(
-    "body_against_func",
+    "driver",
     [
-        body_and_header_width,
-        body_and_main_width,
-        body_and_window_width,
+        lazy_fixture("desktop_driver"),
+        lazy_fixture("mobile_driver"),
     ]
 )
-def test_body_width_on_desktop(desktop_driver, body_against_func):
-    driver = desktop_driver
-
-    body_width, against = body_against_func(driver)
-    assert body_width == against
-
-
 @pytest.mark.parametrize(
-    "body_against_func",
+    "against",
     [
-        body_and_header_width,
-        body_and_main_width,
-        body_and_window_width,
+        get_header_width,
+        get_main_width,
+        get_window_width,
     ]
 )
-def test_body_width_on_mobile(mobile_driver, body_against_func):
-    driver = mobile_driver
-
-    body_width, against = body_against_func(driver)
+def test_body_width(driver, against):
+    body_width = get_body_width(driver)
+    against = against(driver)
     assert body_width == against
