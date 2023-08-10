@@ -1,0 +1,36 @@
+button {
+    border: none;
+    background: none;
+
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
+button:active {
+    animation: stretch .1s ease-in-out;
+}
+button img:active {
+    animation: stretch .3s ease-in-out;
+}
+
+@keyframes stretch {
+    0% {
+        width: 100%;
+        transform: translateX(0);
+    }
+    100% {
+        width: 130%;
+        transform: translateX(-15%);
+    }
+}
