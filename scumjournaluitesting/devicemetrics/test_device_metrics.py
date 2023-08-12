@@ -35,3 +35,16 @@ def test_special_symbols_in_enum_from_new_device_constructor(special_symbol_name
     )
 
     assert device.name == expected
+
+
+def test_landscape(new_device_instance):
+    old_width = new_device_instance.width
+    old_height = new_device_instance.height
+
+    new_device_instance.landscape()
+
+    new_width = new_device_instance.width
+    new_height = new_device_instance.height
+
+    assert old_height == new_width
+    assert old_width == new_height

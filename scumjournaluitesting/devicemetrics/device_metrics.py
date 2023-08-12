@@ -64,6 +64,9 @@ class Device:
             },
         }
 
+    def landscape(self):
+        self.width, self.height = self.height, self.width
+
 
 def new_device(device: DeviceName, width, height, pixel_ratio):
     device_instance = Device(

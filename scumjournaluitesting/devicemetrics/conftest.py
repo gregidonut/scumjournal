@@ -17,7 +17,6 @@ def new_device_instance():
 
 
 @pytest.fixture(params=[
-
     (DeviceName.Samsung_Galaxy_A51slash71, "Samsung Galaxy A51/71"),
     (DeviceName.Samsung_Galaxy_S8plus, "Samsung Galaxy S8+"),
 ])
