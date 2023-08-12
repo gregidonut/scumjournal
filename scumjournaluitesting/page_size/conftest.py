@@ -8,7 +8,7 @@ from scumjournaluitesting.page_size.device_instances import devices
 
 IMPLICIT_WAIT_TIME = 10
 URL = "http://localhost:5173/"
-MAX_RETRIES = 6
+MAX_RETRIES = 10
 
 
 @pytest.fixture
@@ -70,7 +70,7 @@ def mobile_driver(request, default_options, mobile_devices):
 
     mobile_options = default_options
     mobile_options.add_experimental_option(
-        "mobileEmulation", device.get_device_metrics()
+        "mobileEmulation", device.metrics
     )
 
     driver = instantiate_driver(mobile_options)

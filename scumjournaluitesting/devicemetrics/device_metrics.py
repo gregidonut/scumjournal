@@ -55,7 +55,8 @@ class Device:
     def set_device_name(self):
         self.name = self.enum.name
 
-    def get_device_metrics(self) -> dict:
+    @property
+    def metrics(self) -> dict:
         return {
             "deviceMetrics": {
                 "width": self.width,

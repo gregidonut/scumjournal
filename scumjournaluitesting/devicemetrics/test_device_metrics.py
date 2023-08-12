@@ -15,7 +15,7 @@ def test_new_device(new_device_instance):
 
 
 def test_device_metrics(new_device_instance):
-    assert new_device_instance.get_device_metrics() == DEVICE_METRICS_DICT_FROM_INSTANCE
+    assert new_device_instance.metrics == DEVICE_METRICS_DICT_FROM_INSTANCE
 
 
 def test_special_symbols_in_enum_name(special_symbol_names):
