@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from requests.exceptions import ConnectionError, ChunkedEncodingError
+from scumjournaluitesting.page_size.device_instances import devices
 
 IMPLICIT_WAIT_TIME = 10
 URL = "http://localhost:5173/"
@@ -55,26 +56,13 @@ def desktop_driver(default_options):
     driver.quit()
 
 
-@pytest.fixture(params=[
-    "iPhone SE",
-    "iPhone XR",
-    "iPhone 12 Pro",
-    "Pixel 5",
-    "Samsung Galaxy S8+",
-    "Samsung Galaxy S20 Ultra",
-    "iPad Air",
-    "iPad Mini",
-    "Surface Pro 7",
-    "Surface Duo",
-    "Galaxy Fold",
-    "Samsung Galaxy A51/71"
-])
+@pytest.fixture(params=devices)
 def mobile_driver(request, default_options):
-    device_name = request.param
+    device = request.param
 
     mobile_options = default_options
     mobile_options.add_experimental_option(
-        "mobileEmulation", {"deviceName": device_name}
+        "mobileEmulation", device.get_device_metrics()
     )
 
     driver = instantiate_driver(mobile_options)
