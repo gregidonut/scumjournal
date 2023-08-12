@@ -1,6 +1,6 @@
 import pytest
 from pytest_lazyfixture import lazy_fixture
-import pageutils.helpers
+import scumjournaluitesting.page_size.pageutils.helpers as helpers
 
 
 @pytest.mark.parametrize(
@@ -13,13 +13,13 @@ import pageutils.helpers
 @pytest.mark.parametrize(
     "against",
     [
-        pageutils.helpers.get_header_width,
-        pageutils.helpers.get_main_width,
-        pageutils.helpers.get_window_width,
+        helpers.get_header_width,
+        helpers.get_main_width,
+        helpers.get_window_width,
     ]
 )
 def test_body_width(driver, against):
-    body_width = pageutils.helpers.get_body_width(driver)
+    body_width = helpers.get_body_width(driver)
     against = against(driver)
     assert body_width == against
 
@@ -32,4 +32,4 @@ def test_body_width(driver, against):
     ]
 )
 def test_window_width_is_not_less_than_article_width(driver):
-    assert pageutils.helpers.window_width_is_not_less_than_article_width(driver)
+    assert helpers.window_width_is_not_less_than_article_width(driver)
