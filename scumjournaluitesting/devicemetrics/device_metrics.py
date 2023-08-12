@@ -34,6 +34,15 @@ class Device:
     def set_device_name(self):
         self.name = self.enum.name
 
+    def get_device_metrics(self) -> dict:
+        return {
+            "deviceMetrics": {
+                "width": self.width,
+                "height": self.height,
+                "pixelRatio": self.pixel_ratio
+            },
+        }
+
 
 def new_device(device: DeviceName, width, height, pixel_ratio):
     device_instance = Device(
