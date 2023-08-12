@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum, auto
+from types import DynamicClassAttribute
 
 
 class DeviceName(Enum):
@@ -15,6 +16,26 @@ class DeviceName(Enum):
     Surface_Duo = auto()
     Galaxy_Fold = auto()
     Samsung_Galaxy_A51slash71 = auto()
+
+    @DynamicClassAttribute
+    def name(self) -> str:
+        """
+        Accounting for special symbols in enum.name
+        """
+        default_name = super(DeviceName, self).name
+        word_list = default_name.split("_")
+        new_word_list = []
+        for word in word_list:
+            if "slash" in word:
+                new_word_list.append(word.replace("slash", "/"))
+                continue
+            if "plus" in word:
+                new_word_list.append(word.replace("plus", "+"))
+                continue
+            new_word_list.append(word)
+
+        new_word = " ".join(new_word_list)
+        return new_word
 
 
 @dataclass
@@ -46,7 +67,7 @@ class Device:
 
 def new_device(device: DeviceName, width, height, pixel_ratio):
     device_instance = Device(
-        enum=DeviceName(device),
+        enum=device,
         width=width,
         height=height,
         pixel_ratio=pixel_ratio
