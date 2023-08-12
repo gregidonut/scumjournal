@@ -20,9 +20,19 @@ class DeviceName(Enum):
 @dataclass
 class Device:
     enum: DeviceName = None
+    name: str = None
     width: int = None
     height: int = None
     pixel_ratio: float = None
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+    def set_device_name(self):
+        self.name = self.enum.name
 
 
 def new_device(device: DeviceName, width, height, pixel_ratio):
@@ -32,5 +42,7 @@ def new_device(device: DeviceName, width, height, pixel_ratio):
         height=height,
         pixel_ratio=pixel_ratio
     )
+
+    device_instance.set_device_name()
 
     return device_instance
