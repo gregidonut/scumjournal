@@ -57,8 +57,16 @@ def desktop_driver(default_options):
 
 
 @pytest.fixture(params=devices)
-def mobile_driver(request, default_options):
-    device = request.param
+def mobile_devices(request):
+    return request.param
+
+
+@pytest.fixture(params=[False, True])
+def mobile_driver(request, default_options, mobile_devices):
+    device = mobile_devices
+    landscape = request.param
+    if landscape:
+        device.landscape()
 
     mobile_options = default_options
     mobile_options.add_experimental_option(
