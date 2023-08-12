@@ -56,12 +56,12 @@ def desktop_driver(default_options):
     driver.quit()
 
 
-@pytest.fixture(params=devices)
+@pytest.fixture(params=devices, ids=[device.name for device in devices])
 def mobile_devices(request):
     return request.param
 
 
-@pytest.fixture(params=[False, True])
+@pytest.fixture(params=[False, True], ids=["portrait", "landscape"])
 def mobile_driver(request, default_options, mobile_devices):
     device = mobile_devices
     landscape = request.param
